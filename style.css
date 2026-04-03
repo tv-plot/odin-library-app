@@ -1,0 +1,81 @@
+.book-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 200px auto;
+    gap: 20px;
+}
+
+.action-bar {
+    grid-column: 2;
+    justify-self: right;
+    align-self: end;
+    margin-bottom: 20px;
+}
+
+.action-bar button, 
+.action-row button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.action-bar button:hover {
+    cursor: pointer;
+}
+
+.action-bar button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+#book-list {
+    border-spacing: 0;
+    grid-row: 2;
+    grid-column: 2;
+}
+
+#book-list th {
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+#book-list th.title-col, #book-list th.author-col {
+    min-width: 250px;
+}
+
+#book-list th.pages-col {
+    min-width: 100px;
+}
+
+#book-list th.read-col {
+    min-width: 50px;
+}
+
+#book-list tr {
+    height: 30px;
+}
+
+#title, #author {
+    width: 250px;
+}
+
+#pages {
+    width: 50px;
+}
+
+#new-book-form input {
+    margin-top: 3px;
+}
+
+.new-book-row {
+    margin-bottom: 10px;
+}
+
+.action-row {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

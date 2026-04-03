@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="book-container">
+        <div class="action-bar">
+            <button class="add-book" type="button" id="new-book-btn">New</button>
+        </div>
+        <table id="book-list">
+            <thead>
+                <tr>
+                    <th class="title-col">Title</th>
+                    <th class="author-col">Author</th>
+                    <th class="pages-col">Pages</th>
+                    <th class="read-col">Read</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <dialog id="new-book-dialog" closedby="any">
+        <h2>New book details</h2>
+        <form action="" id="new-book-form">
+            <div class="new-book-row">
+                <label for="title">Title</label><br>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="new-book-row">
+                <label for="author">Author</label><br>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="new-book-row">
+                <label for="pages"># Pages</label><br>
+                <input type="number" id="pages" name="pages" required min="1">
+            </div>
+            <div class="new-book-row">
+                <input type="checkbox" id="read" name="read">
+                <label for="read">Have you read the book?</label>
+            </div>
+            <div class="action-row">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </dialog>
+    <script src="library.js"></script>
+</body>
+</html>
