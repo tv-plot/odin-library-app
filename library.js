@@ -1,5 +1,5 @@
 class Book {
-    constructor(id, title, author, pages, read) {
+    constructor(title, author, pages, read) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.author = author;
@@ -11,6 +11,13 @@ class Book {
         this.read = !this.read;
     }
 }
+
+const titleField = document.getElementById("title");
+const titleError = document.querySelector("#title + span.field-err");
+const authorField = document.getElementById("author");
+const authorError = document.querySelector("#author + span.field-err");
+const pagesField = document.getElementById("pages");
+const pagesError = document.querySelector("#pages + span.field-err");
 
 const myLibrary = [];
 
@@ -33,6 +40,9 @@ newBookButton.addEventListener("click", () => {
 const newBookForm = document.getElementById("new-book-form");
 newBookForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+        return;
+    }
     const newBookFormData = new FormData(e.target);
     const data = Object.fromEntries(newBookFormData.entries());
     const newBook = new Book(data.title, data.author, data.pages, data.read === "on" ? true : false);
@@ -40,7 +50,6 @@ newBookForm.addEventListener("submit", (e) => {
     renderBook(newBook);
     newBookDialog.close();
 });
-
 
 const newBookDialog = document.getElementById("new-book-dialog");
 newBookDialog.addEventListener("close", e => {
@@ -111,4 +120,58 @@ function createRemoveCell(book) {
 
     removeCell.appendChild(removeButton);
     return removeCell;
+}
+
+titleField.addEventListener("input", e => {
+    if (titleField.validity.valid) {
+        clearError(titleError);
+    } else {
+        showError(titleError, "Title can't be empty");
+    }
+});
+
+authorField.addEventListener("input", e => {
+    if (authorField.validity.valid) {
+        clearError(authorError);
+    } else {
+        showError(authorError, "Author can't be empty");
+    }
+});
+
+pagesField.addEventListener("input", e => {
+    if (pagesField.validity.valid) {
+        clearError(pagesError);
+    } else {
+        showError(pagesError, "Pages has to be a posivity value");
+    }
+});
+
+function validateForm() {
+    if (!newBookForm.checkValidity()) {
+        if (!titleField.validity.valid) {
+            showError(titleError, "Title can't be empty");
+        }
+
+        if (authorField.validity.valueMissing) {
+            showError(authorError, "Author can't be empty");
+        }
+
+        if (pagesField.validity.valueMissing || pagesField.validity.rangeUnderflow) {
+            showError(pagesError, "Pages has to be a posivity value");
+        }
+
+        return false;
+    }
+
+    return true;
+}
+
+function showError(errorLabel, text) {
+    errorLabel.textContent = text;
+    errorLabel.classList.add("active");
+}
+
+function clearError(errorLabel) {
+    errorLabel.textContent = "";
+    errorLabel.classList.remove("active");
 }
