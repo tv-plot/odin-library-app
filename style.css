@@ -79,3 +79,16 @@
     align-items: center;
     justify-content: center;
 }
+
+.field-err {
+    display: block;
+    color: white;
+    background-color: brown;
+}
+
+.active {
+    border: 1px solid red;
+    border-top-width: 0;
+    border-radius: 0 0 4px 4px;
+    padding: 2px;
+}

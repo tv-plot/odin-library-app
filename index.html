@@ -26,18 +26,21 @@
     </div>
     <dialog id="new-book-dialog" closedby="any">
         <h2>New book details</h2>
-        <form action="" id="new-book-form">
+        <form action="" id="new-book-form" novalidate>
             <div class="new-book-row">
                 <label for="title">Title</label><br>
                 <input type="text" id="title" name="title" required>
+                <span class="field-err"></span>
             </div>
             <div class="new-book-row">
                 <label for="author">Author</label><br>
                 <input type="text" id="author" name="author" required>
+                <span class="field-err"></span>
             </div>
             <div class="new-book-row">
                 <label for="pages"># Pages</label><br>
                 <input type="number" id="pages" name="pages" required min="1">
+                <span class="field-err"></span>
             </div>
             <div class="new-book-row">
                 <input type="checkbox" id="read" name="read">
